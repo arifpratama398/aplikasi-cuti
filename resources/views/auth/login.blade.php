@@ -19,10 +19,10 @@
           </div>
         </div>
         @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+            <div class="alert alert-danger">
+                <p>{{ $message }}</p>
+            </div>
+        @enderror     
         <div class="input-group mb-3">
         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
           <div class="input-group-append">
@@ -32,9 +32,9 @@
           </div>
         </div>
         @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+            <div class="alert alert-danger">
+                <p>{{ $message }}</p>
+            </div>
         @enderror
         <div class="row">
           <div class="col-8">
