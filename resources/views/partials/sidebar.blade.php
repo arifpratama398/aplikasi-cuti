@@ -36,12 +36,20 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pengajuan Terbaru</p>
-                </a>
-              </li>
+              @if (auth()->user()->is_admin)
+                <li class="nav-item">
+                  <a href="/admin/home" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Daftar Karyawan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/admin/cuti" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pengajuan Terbaru</p>
+                  </a>
+                </li>
+              @endif
             </ul>
           </li>          
         </ul>

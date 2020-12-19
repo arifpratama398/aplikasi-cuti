@@ -46,18 +46,26 @@ class HomeController extends Controller
 
     public function adminHome()
     {
+        $users = DB::table('users')
+            ->paginate(5);
+
+        return view('admin_home', [
+            'users' => $users
+        ]);
+    }
+
+    public function adminCuti()
+    {
         $cuti_pending = DB::table('cuti')
             ->join('users','users.id','cuti.id')
             ->select('users.name','cuti.*')
             ->where('status', false)
             ->paginate(10);
 
-        $users = DB::table('users')
-            ->paginate(5);
+        
 
-        return view('admin_home', [
+        return view('admin_cuti', [
             'cuti_pending' => $cuti_pending,
-            'users' => $users
         ]);
     }
 
@@ -66,7 +74,7 @@ class HomeController extends Controller
         // menghapus pengajuan cuti
         DB::table('cuti')->where('cuti_id', $id)->delete();
         
-        return redirect('/admin/home')->with('status', 'Pengajuan berhasil dihapus');
+        return redirect('/admin/cuti')->with('status', 'Pengajuan berhasil dihapus');
     }
 
     public function deleteUser($id) 
@@ -92,7 +100,7 @@ class HomeController extends Controller
     {
         DB::table('cuti')->where('cuti_id', $id)->update(['status' => true]);
         
-        return redirect('/admin/home')->with('status', 'Pengajuan berhasil dihapus');
+        return redirect('/admin/cuti')->with('status', 'Pengajuan Diterima');
     }
 
     public function updateUser(Request $request) 
