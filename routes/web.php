@@ -28,3 +28,7 @@ Route::post('/pendaftaran',[App\Http\Controllers\HomeController::class, 'store_u
 Route::get('/users/destroy/{id}', 'App\Http\Controllers\HomeController@deleteUser')->name('admin.deleteUser')->middleware('is_admin');
 Route::get('/users/edit/{id}', 'App\Http\Controllers\HomeController@editUser')->name('admin.editUser')->middleware('is_admin');
 Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateUser'])->name('updateUser')->middleware('is_admin');
+
+Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('roles', 'App\Http\Controllers\RolesController');
+});

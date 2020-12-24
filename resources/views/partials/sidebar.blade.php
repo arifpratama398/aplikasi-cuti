@@ -24,35 +24,70 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">        
+          <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+          </li>  
+          <!-- MANAJEMEN USER   -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Dashboard
+                Manajemen User
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               @if (auth()->user()->is_admin)
                 <li class="nav-item">
-                  <a href="/admin/home" class="nav-link active">
+                  <a href="/admin/home" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Karyawan</p>
+                    <p>User</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/admin/cuti" class="nav-link active">
+                  <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Role</p>
+                  </a>
+                </li>
+              @endif
+            </ul>
+          </li> 
+          <!-- END MANAJEMEN USER  -->
+          <li class="nav-item">
+              <a href="/admin/home" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Manajemen Karyawan
+                </p>
+              </a>
+          </li>    
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manajemen Cuti
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              @if (auth()->user()->is_admin)
+                <li class="nav-item">
+                  <a href="/admin/cuti" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pengajuan Terbaru</p>
                   </a>
                 </li>
               @endif
             </ul>
-          </li>          
-        </ul>
+          </li>                   
+        </ul>      
       </nav>
       <!-- /.sidebar-menu -->
     </div>

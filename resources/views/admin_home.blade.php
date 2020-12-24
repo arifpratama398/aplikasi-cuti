@@ -7,12 +7,13 @@
             <div class="card">
             <div class="card-header">
                 <div class="row justify-content-md-center">
-                        <div class="col-sm-8"> Daftar Karyawan </div>
+                        <div class="col-sm-8">
+                            <h3>Daftar User</h3>
+                        </div>
                         <div class="col-sm-4"> 
-                            <a style="float: right" 
-                                    type="button" 
-                                    class="btn btn-primary"
-                                    href="{{ route('register') }}">Register User</a>
+                            <a style="float: right" type="button" class="btn btn-primary btn-flat" href="{{ route('register') }}">
+                                Tambah User
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -27,27 +28,27 @@
                     <table class="table"> 
                         <thead>
                             <tr>
-                                <td>No</td>
-                                <td>Nama</td>
-                                <td>Posisi</td>
-                                <td>Email</td>
-                                <td><i>action</i></td>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Posisi</td>
+                                <th>Email</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $i = 1; ?>
-                                @foreach($users as $key=>$u)
+                            @foreach($users as $key => $u)
                                 <tr>
-                                    <td>{{$key + 1}}</td>
-                                    <td>{{$u->name}}</td>
-                                    <td>{{$u->position}}</td>
-                                    <td>{{$u->email}}</td>
-                                    <td>
-                                        <a href="/users/edit/{{$u->id}}" class="btn btn-xs btn-success";">Edit</a>
-                                        <a href="/users/destroy/{{$u->id}}" class="btn btn-xs btn-secondary" onclick="return confirm('yakin ingin menghapus data ini?');">Delete</a> 
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $u->name }}</td>
+                                    <td>{{ $u->role->name }}</td>
+                                    <td>{{ $u->email }}</td>
+                                    <td>                                        
+                                        <a href="/users/edit/{{$u->id}}" class="btn btn-xs btn-success btn-flat";">Edit</a>
+                                        <a href="/users/destroy/{{$u->id}}" class="btn btn-xs btn-secondary btn-flat" onclick="return confirm('yakin ingin menghapus data ini?');">Delete</a> 
                                     </td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-center">

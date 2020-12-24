@@ -46,12 +46,9 @@ class HomeController extends Controller
 
     public function adminHome()
     {
-        $users = DB::table('users')
-            ->paginate(5);
+        $users = User::paginate(5);
 
-        return view('admin_home', [
-            'users' => $users
-        ]);
+        return view('admin.users.index', compact('users'));
     }
 
     public function adminCuti()
