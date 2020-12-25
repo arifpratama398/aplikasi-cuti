@@ -31,7 +31,7 @@
                         <a href="{{ route('admin.roles.create') }}" class="btn btn-sm btn-success btn-flat">
                         <i class="fa fa-plus fa-icon"></i>&nbsp;@lang('global.app_add')</a>
                     </div>
-                    <table id="table" class="table table-bordered table-striped">
+                    <table id="dataTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th width="80%" class="text-center">@lang('global.role.name')</th>
@@ -80,7 +80,7 @@
 @section('js')
 <script>
   $(function () {
-    $("#table").DataTable({
+    $("#dataTable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "print", "colvis"]
     }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

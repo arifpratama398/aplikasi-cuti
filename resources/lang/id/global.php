@@ -21,6 +21,10 @@ return [
     'app_list'          => 'List',
     'app_save'          => 'Simpan',
     'app_view'          => 'Detail',
+    'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',
+    'reference_management'   => [
+        '_'             => 'Manajemen Referensi'
+    ],
     'role'              => [
         '_'             => 'Role',
         'create'        => 'Tambah Role',

@@ -31,4 +31,18 @@ Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateU
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('roles', 'App\Http\Controllers\RolesController');
+
+    // Datamaster
+    Route::group(['prefix' => 'datamaster'], function () {
+        Route::get('list', 'App\Http\Controllers\DataMasterController@list')
+            ->name('datamaster.list');
+        Route::get('detail/{name}', 'App\Http\Controllers\DataMasterController@detail')
+            ->name('datamaster.detail');
+        Route::post('store/{name}', 'App\Http\Controllers\DataMasterController@store')
+            ->name('datamaster.store');
+        Route::put('store/{name}', 'App\Http\Controllers\DataMasterController@update')
+            ->name('datamaster.update');
+        Route::delete('store/{name}', 'App\Http\Controllers\DataMasterController@destroy')
+            ->name('datamaster.destroy');
+    });    
 });

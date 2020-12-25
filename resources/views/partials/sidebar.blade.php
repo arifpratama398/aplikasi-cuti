@@ -86,7 +86,16 @@
                 </li>
               @endif
             </ul>
-          </li>                   
+          </li> 
+          <!-- MANAJEMEN REFERENSI -->
+          <li class="nav-item">
+              <a href="{{ route('admin.datamaster.list') }}" class="nav-link">
+                <i class="nav-icon fas fa-inbox"></i>
+                <p>
+                  Manajemen Referensi
+                </p>
+              </a>
+          </li>  
         </ul>      
       </nav>
       <!-- /.sidebar-menu -->
