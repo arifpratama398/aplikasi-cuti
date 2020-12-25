@@ -64,7 +64,7 @@
                             </button>
                         </div>                        
                     </div>   
-                    <table id="dataTable" class="table table-hover table-striped table-bordered">
+                    <table id="table" class="table table-hover table-striped table-bordered">
                         <thead>
                             <tr>
                                 @foreach($records['fields'] as $fields)
@@ -109,7 +109,7 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        var table = $("#dataTable").DataTable({
+        var table = $("#table").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons"   : ["copy", "csv", "print", "colvis"],
             "dom"       : "<'row'<'col-sm-8'><'col-sm-3 col-xs-12'f><'col-sm-1 col-xs-12'l>>" +
@@ -117,7 +117,7 @@
             "<'row'<'col-sm-5'><'col-sm-7'p>>"  
         }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 
-        $('#dataTable tbody').on('click', 'tr', function () {
+        $('#table tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             }
@@ -130,7 +130,7 @@
         //show edit modal
         $('#btn-edit').on('click', function () {            
             $('.selected td').each(function () {
-                var th = $('#dataTable th').eq($(this).index()).text();
+                var th = $('#table th').eq($(this).index()).text();
                 $('#' + th).val($(this).html());
             });
             $('#formDetail').prepend('<input type="hidden" name="_method" value="put">');
@@ -139,7 +139,7 @@
             $('#formModal').on('hidden.bs.modal', function () {
                 $(this).find("input[name='_method']").remove();
                 $(this).find("input:text").val('');
-                $('#dataTable tbody tr').removeClass('selected');
+                $('#table tbody tr').removeClass('selected');
             });
         });
 
@@ -147,7 +147,7 @@
         $('#btn-delete').on('click', function () {
             if (confirm('@lang('global.confirm_del')')) {
                 $('.selected td').each(function () {
-                    var th = $('#dataTable th').eq($(this).index()).text();
+                    var th = $('#table th').eq($(this).index()).text();
                     $('#' + th).val($(this).html());
                 });
                 $('#formDetail').prepend('<input type="hidden" name="_method" value="delete">');
