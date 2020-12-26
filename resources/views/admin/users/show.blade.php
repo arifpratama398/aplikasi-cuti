@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>@lang('global.role.detail')</h1>
+            <h1>@lang('global.user.detail')</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">@lang('global.user_management._')</a></li>
-              <li class="breadcrumb-item active">@lang('global.role._')</li>
+              <li class="breadcrumb-item active">@lang('global.user._')</li>
             </ol>
           </div>
         </div>
@@ -31,8 +31,16 @@
                         <div class="col-md-6">
                             <table class="table table-bordered table-striped">
                                 <tr>
-                                    <th>@lang('global.role.name')</th>
-                                    <td>{{ $role->nama }}</td>
+                                    <th>@lang('global.user.name')</th>
+                                    <td>{{ $user->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>@lang('global.user.email')</th>
+                                    <td>{{ $user->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>@lang('global.role._')</th>
+                                    <td>{{ $user->role->nama }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -41,10 +49,10 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <a href="{{ route('admin.roles.index') }}" class="btn btn-sm btn-warning btn-flat text-white" type="button">
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-warning btn-flat text-white" type="button">
                         <i class="fa fa-arrow-left"></i>&nbsp;@lang('global.app_back')
                     </a> 
-                    <a href="{{ route('admin.roles.edit',[$role->id]) }}" class="btn btn-sm btn-info btn-flat text-white pull-right" type="button">
+                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-sm btn-info btn-flat text-white pull-right" type="button">
                         <i class="fa fa-edit"></i>&nbsp;@lang('global.app_edit')
                     </a> 
                 </div>

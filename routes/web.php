@@ -30,6 +30,7 @@ Route::get('/users/edit/{id}', 'App\Http\Controllers\HomeController@editUser')->
 Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateUser'])->name('updateUser')->middleware('is_admin');
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('users', 'App\Http\Controllers\UsersController');
     Route::resource('roles', 'App\Http\Controllers\RolesController');
 
     // Datamaster

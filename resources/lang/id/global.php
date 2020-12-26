@@ -18,6 +18,7 @@ return [
     'app_back'          => 'Kembali',
     'app_delete'        => 'Hapus',
     'app_edit'          => 'Edit',
+    'app_form'          => 'Form',
     'app_list'          => 'List',
     'app_save'          => 'Simpan',
     'app_view'          => 'Detail',
@@ -30,6 +31,24 @@ return [
         'create'        => 'Tambah Role',
         'detail'        => 'Detail Role',
         'edit'          => 'Edit Role',
+        'name'          => 'Nama'
+    ],
+    'user'              => [
+        '_'             => 'User',
+        'create'        => 'Tambah User',
+        'detail'        => 'Detail User',
+        'edit'          => 'Edit User',
+        'email'         => 'Email',
+        'fields'        => [
+            'email'     => 'Email',
+            'name'      => 'Nama',
+            'password'  => 'Password',
+            'password_confirmation' => 'Konfirmasi Password',
+            'role'      => 'Role',
+            'username'  => 'Username',
+
+
+        ],
         'name'          => 'Nama'
     ],
     'user_management'   => [

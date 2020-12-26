@@ -29,7 +29,7 @@ $route = $role->exists
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">@lang('global.app_view')</h3>
+                    <h3 class="card-title">@lang('global.app_form')</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

@@ -34,6 +34,7 @@
               </a>
           </li>  
           <!-- MANAJEMEN USER   -->
+          @if (auth()->user()->is_admin)
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -43,9 +44,8 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              @if (auth()->user()->is_admin)
                 <li class="nav-item">
-                  <a href="/admin/home" class="nav-link">
+                  <a href="{{ route('admin.users.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>User</p>
                   </a>
@@ -56,9 +56,9 @@
                     <p>Role</p>
                   </a>
                 </li>
-              @endif
             </ul>
           </li> 
+          @endif
           <!-- END MANAJEMEN USER  -->
           <li class="nav-item">
               <a href="/admin/home" class="nav-link">
