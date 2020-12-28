@@ -5,12 +5,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>@lang('global.user._')</h1>
+            <h1>@lang('global.employee_management._')</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">@lang('global.user_management._')</a></li>
-              <li class="breadcrumb-item active">@lang('global.user._')</li>
+              <li class="breadcrumb-item"><a href="#">@lang('global.employee_management._')</a></li>
             </ol>
           </div>
         </div>
@@ -28,37 +27,37 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="case-header with-border">
-                        <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-success btn-flat">
+                        <a href="{{ route('admin.karyawan.create') }}" class="btn btn-sm btn-success btn-flat">
                         <i class="fa fa-plus fa-icon"></i>&nbsp;@lang('global.app_add')</a>
                     </div>
                     <table id="table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th width="40%" class="text-center">@lang('global.user.name')</th>
-                                <th width="30%" class="text-center">@lang('global.user.email')</th>
-                                <th width="10%" class="text-center">@lang('global.role._')</th>
+                                <th width="40%" class="text-center">@lang('global.employee_management.name')</th>
+                                <th width="30%" class="text-center">@lang('global.employee_management.fields.number')</th>
+                                <th width="10%" class="text-center">@lang('global.employee_management.fields.gender')</th>
                                 <th width="20%" class="text-center">@lang('global.app_action')</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @if (count($users) > 0)
-                            @foreach($users as $user)
+                        @if (count($karyawan) > 0)
+                            @foreach($karyawan as $item)
                             <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td class="text-center">{{ $user->role->nama }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->nomor_karyawan }}</td>
+                                <td class="text-center">{{ $item->jenisKelamin->name }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="btn btn-xs btn-primary btn-flat">
+                                    <a href="{{ route('admin.karyawan.show',[$item->id]) }}" class="btn btn-xs btn-primary btn-flat">
                                         <i class="fa fa-search"></i>&nbsp;@lang('global.app_view')
                                     </a>
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-xs btn-info btn-flat">
+                                    <a href="{{ route('admin.karyawan.edit',[$item->id]) }}" class="btn btn-xs btn-info btn-flat">
                                         <i class="fa fa-edit"></i>&nbsp;@lang('global.app_edit')
                                     </a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['admin.users.destroy', $user->id])) !!}
+                                        'route' => ['admin.karyawan.destroy', $item->id])) !!}
                                         <button class="btn btn-xs btn-danger btn-flat" type="submit">
                                             <i class="fa fa-trash"></i>&nbsp;@lang('global.app_delete')
                                         </button>    

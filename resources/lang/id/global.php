@@ -20,12 +20,30 @@ return [
     'app_edit'          => 'Edit',
     'app_form'          => 'Form',
     'app_list'          => 'List',
+    'app_no_entries_in_table' => 'Belum ada data pada tabel',
     'app_save'          => 'Simpan',
     'app_view'          => 'Detail',
     'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',
     'reference_management'   => [
         '_'             => 'Manajemen Referensi'
     ],
+    'employee_management'              => [
+        '_'             => 'Manajemen Karyawan',
+        'create'        => 'Tambah Karyawan',
+        'detail'        => 'Detail Karyawan',
+        'edit'          => 'Edit Karyawan',
+        'email'         => 'Email',
+        'fields'        => [
+            'address'   => 'Alamat',
+            'email'     => 'Email',
+            'gender'    => 'Jenis Kelamin',
+            'name'      => 'Nama',
+            'number'    => 'No Karyawan',
+            'religion'  => 'Agama',
+            'telp'      => 'No Telp'
+        ],
+        'name'          => 'Nama'    
+    ],    
     'role'              => [
         '_'             => 'Role',
         'create'        => 'Tambah Role',
@@ -46,14 +64,12 @@ return [
             'password_confirmation' => 'Konfirmasi Password',
             'role'      => 'Role',
             'username'  => 'Username',
-
-
         ],
         'name'          => 'Nama'
     ],
     'user_management'   => [
         '_'             => 'Manajemen User'
-    ],
+    ],    
     'save_success'            => 'Data berhasil disimpan',
     'save_error'              => 'Terjadi kesalahan',
     'save_failed'             => 'Data gagal disimpan'

@@ -61,7 +61,7 @@
           @endif
           <!-- END MANAJEMEN USER  -->
           <li class="nav-item">
-              <a href="/admin/home" class="nav-link">
+              <a href="{{ route('admin.karyawan.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   Manajemen Karyawan

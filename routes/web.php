@@ -32,6 +32,7 @@ Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateU
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('users', 'App\Http\Controllers\UsersController');
     Route::resource('roles', 'App\Http\Controllers\RolesController');
+    Route::resource('karyawan', 'App\Http\Controllers\KaryawanController');
 
     // Datamaster
     Route::group(['prefix' => 'datamaster'], function () {
