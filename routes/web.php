@@ -30,6 +30,7 @@ Route::get('/users/edit/{id}', 'App\Http\Controllers\HomeController@editUser')->
 Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateUser'])->name('updateUser')->middleware('is_admin');
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
     Route::resource('users', 'App\Http\Controllers\UsersController');
     Route::resource('roles', 'App\Http\Controllers\RolesController');
     Route::resource('karyawan', 'App\Http\Controllers\KaryawanController');
@@ -47,4 +48,8 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
         Route::delete('store/{name}', 'App\Http\Controllers\DataMasterController@destroy')
             ->name('datamaster.destroy');
     });    
+    //Autocomple ADMIN
+    Route::group(['prefix' => 'autocomplete'], function () {
+        Route::get('agama', 'App\Http\Controllers\AutocompleteController@agama');
+    });
 });

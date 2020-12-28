@@ -23,9 +23,9 @@ return [
     'app_no_entries_in_table' => 'Belum ada data pada tabel',
     'app_save'          => 'Simpan',
     'app_view'          => 'Detail',
-    'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',
-    'reference_management'   => [
-        '_'             => 'Manajemen Referensi'
+    'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',    
+    'dashboard'         => [
+        '_'             => 'Dashboard'
     ],
     'employee_management'              => [
         '_'             => 'Manajemen Karyawan',
@@ -44,6 +44,9 @@ return [
         ],
         'name'          => 'Nama'    
     ],    
+    'reference_management'   => [
+        '_'             => 'Manajemen Referensi'
+    ],
     'role'              => [
         '_'             => 'Role',
         'create'        => 'Tambah Role',
