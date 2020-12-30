@@ -29,12 +29,12 @@ return [
         'table_user'    => 'User Terbaru',
         'table_cuti'    => 'Pengajuan Cuti Terbaru',
         'table_header'  => [
-            'number'    => 'No.',
-            'name'      => 'Nama',
+            'description' => 'Deskripsi',
             'email'     => 'Email',
-            'start_date' => 'Tanggal Mulai',
             'finish_date' => 'Tanggal Selesai',
-            'description' => 'Deskripsi'
+            'name'      => 'Nama',
+            'number'    => 'No.',
+            'start_date' => 'Tanggal Mulai'
         ]
     ],
     'employee_management'              => [
@@ -53,6 +53,16 @@ return [
             'telp'      => 'No Telp'
         ],
         'name'          => 'Nama'    
+    ],
+    'profile' => [
+        '_'             => 'Profile',
+        'address'       => 'Alamat',
+        'email'         => 'Email',
+        'id'            => 'ID',
+        'info'          => 'Informasi Personal',
+        'name'          => 'Nama',
+        'phone'         => 'Telepon',
+        'religion'      => 'Agama'
     ],    
     'reference_management'   => [
         '_'             => 'Manajemen Referensi'
