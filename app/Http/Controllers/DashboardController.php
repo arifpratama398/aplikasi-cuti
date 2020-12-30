@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Cuti;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,16 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function dashboard()
-    {        
-        $user = User::get();
-        return view('admin.dashboard.index', compact('user'));
+    {   
+        $user = User::orderBy('created_at','desc')->get();
+        $cuti = Cuti::join('users','users.id','=','cuti.id')
+            // not confirmed by Managers 
+            ->whereNull('cuti.status_1')
+            // not confirmed by HR
+            ->whereNull('cuti.status_2')
+            // show latest data.
+            ->orderBy('cuti.created_at','desc')
+            ->get(['cuti.*', 'users.name']);
+        return view('admin.dashboard.index', compact(['user', 'cuti']));
     }    
 }

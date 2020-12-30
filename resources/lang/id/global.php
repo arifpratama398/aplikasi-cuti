@@ -25,7 +25,17 @@ return [
     'app_view'          => 'Detail',
     'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',    
     'dashboard'         => [
-        '_'             => 'Dashboard'
+        '_'             => 'Dashboard',
+        'table_user'    => 'User Terbaru',
+        'table_cuti'    => 'Pengajuan Cuti Terbaru',
+        'table_header'  => [
+            'number'    => 'No.',
+            'name'      => 'Nama',
+            'email'     => 'Email',
+            'start_date' => 'Tanggal Mulai',
+            'finish_date' => 'Tanggal Selesai',
+            'description' => 'Deskripsi'
+        ]
     ],
     'employee_management'              => [
         '_'             => 'Manajemen Karyawan',
