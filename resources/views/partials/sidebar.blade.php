@@ -15,10 +15,10 @@
         <div class="image">
           <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
-          <a href="{{ route('user.profile') }}" class="d-block">
+        <div class="info">          
+          <a href="{{ !auth()->user()->isAdmin() ? route('user.profile') : '#' }}" class="d-block">
               {{ strtoupper(auth()->user()->name) }}
-          </a>
+          </a>          
         </div>
       </div>
 
@@ -34,7 +34,7 @@
               </a>
           </li>  
           <!-- MANAJEMEN USER   -->
-          @if (auth()->user()->is_admin)
+          @if(auth()->user()->isAdmin())
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -59,7 +59,7 @@
             </ul>
           </li> 
           @endif
-          @if(auth()->user()->isAdmin))
+          @if(auth()->user()->isAdmin())
           <!-- END MANAJEMEN USER  -->
           <li class="nav-item">
               <a href="{{ route('admin.karyawan.index') }}" class="nav-link">
@@ -90,7 +90,7 @@
             </ul>
           </li> 
           <!-- MANAJEMEN REFERENSI -->
-          @if(auth()->user()->isAdmin))
+          @if(auth()->user()->isAdmin())
           <li class="nav-item">
               <a href="{{ route('admin.datamaster.list') }}" class="nav-link">
                 <i class="nav-icon fas fa-inbox"></i>

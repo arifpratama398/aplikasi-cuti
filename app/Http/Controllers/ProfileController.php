@@ -16,12 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller 
 {
     public function profile(){
-        $profile = User::join('karyawan','karyawan.user_id','=','users.id')
-            ->join('roles','roles.id','=','users.role_id')
-            ->join('ref_agama','ref_agama.id','=','karyawan.agama_id')
-            ->where('users.id', Auth::id())
-            ->first(['roles.name as role','karyawan.*','users.email', 'ref_agama.name as agama']);
-
+        $profile = Karyawan::firstWhere('user_id', auth()->user()->id);
         return view('common.profile.index', compact('profile'));
     }
 }

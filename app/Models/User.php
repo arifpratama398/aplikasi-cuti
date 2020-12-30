@@ -44,6 +44,35 @@ class User extends Authenticatable
         );
     }
 
+    public function hasRole($role_name)
+    {
+        if ($this->role->nama === $role_name) {
+            return true;
+        }
+
+        return 0;
+    }    
+    
+    public function isAdmin()
+    {
+        return $this->hasRole('Admin');
+    }
+
+    public function isHRD()
+    {
+        return $this->hasRole('HRD');
+    }
+
+    public function isManajer()
+    {
+        return $this->hasRole('Manajer');
+    }
+
+    public function isKaryawan()
+    {
+        return $this->hasRole('Karyawan');
+    }
+
     public function role()
     {
         return $this->belongsTo('App\Models\Role', 'role_id', 'id');

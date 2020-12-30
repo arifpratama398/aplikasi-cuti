@@ -20,7 +20,7 @@
 @endsection
 @section('content')
 <div class="container">
-@if(auth()->user()->isAdmin)
+@if(auth()->user()->isAdmin())
   @include('admin.dashboard.partial.admin.widget')
   @include('admin.dashboard.partial.admin.table')
 @else  

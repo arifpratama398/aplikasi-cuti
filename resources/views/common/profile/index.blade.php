@@ -31,14 +31,14 @@
 
           <h3 class="profile-username text-center">{{ $profile->name }}</h3>
 
-          <p class="text-muted text-center">{{ $profile->role }}</p>
+          <p class="text-muted text-center">{{ $profile->user->role->nama }}</p>
 
           <ul class="list-group list-group-unbordered mb-3">
             <li class="list-group-item">
               <b>@lang('global.profile.id')</b> <a class="float-right">{{ $profile->nomor_karyawan }}</a>
             </li>
             <li class="list-group-item">
-              <b>@lang('global.profile.email')</b> <a class="float-right">{{ $profile->email }}</a>
+              <b>@lang('global.profile.email')</b> <a class="float-right">{{ $profile->user->email }}</a>
             </li>
             <li class="list-group-item">
               <b>@lang('global.profile.phone')</b> <a class="float-right">{{ $profile->no_telp }}</a>
@@ -59,7 +59,7 @@
         <div class="card-body">
           <strong><i class="fas fa-heart mr-1"></i>@lang('global.profile.religion')</strong>
           <p class="text-muted">
-            {{ $profile->agama }}
+            {{ $profile->agama->name }}
           </p>
           <hr>
           <strong><i class="fas fa-map-marker-alt mr-1"></i>@lang('global.profile.address')</strong>
