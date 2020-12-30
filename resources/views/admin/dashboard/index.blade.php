@@ -20,7 +20,12 @@
 @endsection
 @section('content')
 <div class="container">
-  @include('admin.dashboard.partial.widget')
-  @include('admin.dashboard.partial.table')
+@if(auth()->user()->isAdmin)
+  @include('admin.dashboard.partial.admin.widget')
+  @include('admin.dashboard.partial.admin.table')
+@else  
+  @include('admin.dashboard.partial.karyawan.widget')
+  @include('admin.dashboard.partial.karyawan.table')
+@endif  
 </div>
 @endsection

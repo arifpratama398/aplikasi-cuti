@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Cuti;
 
 class HomeController extends Controller
 {
@@ -27,21 +28,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::id();
-        $cuti_pending = DB::table('cuti')
-            ->where('id', $id)
-            ->where('status', false)
-            ->paginate(10);
-
-        $cuti_acc = DB::table('cuti')
-            ->where('id', $id)
-            ->where('status', true)
-            ->paginate(10);
-
-        return view('home', [
-            'cuti_pending' => $cuti_pending, 
-            'cuti_acc' => $cuti_acc,
-        ]);
+        $user = User::orderBy('created_at','desc')->get();
+        $cuti = Cuti::join('users','users.id','=','cuti.id')
+            // not confirmed by Managers 
+            ->whereNull('cuti.status_1')
+            // not confirmed by HR
+            ->whereNull('cuti.status_2')
+            // show latest data.
+            ->orderBy('cuti.created_at','desc')
+            ->get(['cuti.*', 'users.name']);
+        return view('admin.dashboard.index', compact(['user', 'cuti']));
     }
 
     public function adminHome()

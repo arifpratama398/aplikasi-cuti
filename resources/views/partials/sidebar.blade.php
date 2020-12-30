@@ -59,6 +59,7 @@
             </ul>
           </li> 
           @endif
+          @if(auth()->user()->isAdmin))
           <!-- END MANAJEMEN USER  -->
           <li class="nav-item">
               <a href="{{ route('admin.karyawan.index') }}" class="nav-link">
@@ -68,6 +69,7 @@
                 </p>
               </a>
           </li>    
+          @endif
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -88,6 +90,7 @@
             </ul>
           </li> 
           <!-- MANAJEMEN REFERENSI -->
+          @if(auth()->user()->isAdmin))
           <li class="nav-item">
               <a href="{{ route('admin.datamaster.list') }}" class="nav-link">
                 <i class="nav-icon fas fa-inbox"></i>
@@ -96,6 +99,7 @@
                 </p>
               </a>
           </li>  
+          @endif
         </ul>      
       </nav>
       <!-- /.sidebar-menu -->
