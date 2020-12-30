@@ -29,6 +29,9 @@ Route::get('/users/destroy/{id}', 'App\Http\Controllers\HomeController@deleteUse
 Route::get('/users/edit/{id}', 'App\Http\Controllers\HomeController@editUser')->name('admin.editUser')->middleware('is_admin');
 Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateUser'])->name('updateUser')->middleware('is_admin');
 
+// Add profile page for all user
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('user.profile');
+
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
     Route::resource('users', 'App\Http\Controllers\UsersController');
