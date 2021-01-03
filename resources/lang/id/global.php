@@ -23,7 +23,25 @@ return [
     'app_no_entries_in_table' => 'Belum ada data pada tabel',
     'app_save'          => 'Simpan',
     'app_view'          => 'Detail',
-    'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',    
+    'confirm_del'       => 'Apakah anda yakin akan menghapus data ini ?',
+    'cuti'              => [
+        '_'             => 'Daftar Cuti',
+        'create'        => 'Buat Pengajuan Cuti',
+        'description'   => 'Deskripsi',
+        'detail'        => 'Detail Cuti',
+        'edit'          => 'Edit Cuti',
+        'email'         => 'Email',
+        'finish_date'   => 'Tgl Selesai',
+        'fields'        => [
+            'start_date'   => 'tgl_mulai',
+            'finish_date'  => 'tgl_selesai',
+            'description'  => 'deskripsi'
+        ],
+        'name'          => 'Nama',
+        'number'        => 'No.',
+        'start_date'    => 'Tgl Mulai',
+        'status'        => 'Status'
+    ],    
     'dashboard'         => [
         '_'             => 'Dashboard',
         'table_user'    => 'User Terbaru',

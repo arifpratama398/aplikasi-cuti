@@ -79,14 +79,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              @if (auth()->user()->is_admin)
                 <li class="nav-item">
-                  <a href="/admin/cuti" class="nav-link">
+                  <a href="{{ route('cuti.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pengajuan Terbaru</p>
                   </a>
                 </li>
-              @endif
             </ul>
           </li> 
           <!-- MANAJEMEN REFERENSI -->

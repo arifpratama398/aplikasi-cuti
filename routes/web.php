@@ -32,6 +32,12 @@ Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateU
 // Add profile page for all user
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('user.profile');
 
+// Define manajemen cuti 
+// TODO - Refactor this
+Route::resource('cuti', 'App\Http\Controllers\CutiController');
+Route::get('/hrd/cuti/action/{id}/{action}', 'App\Http\Controllers\CutiController@hrdAction')->name('hrd.cuti.action');
+Route::get('/manager/cuti/action/{id}/{action}', 'App\Http\Controllers\CutiController@managerAction')->name('manager.cuti.action');
+
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
     Route::resource('users', 'App\Http\Controllers\UsersController');
