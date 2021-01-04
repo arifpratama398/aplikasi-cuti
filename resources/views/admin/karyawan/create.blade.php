@@ -3,9 +3,15 @@
 $agama = old('agama')
             ? \App\RefAgama::find(old('agama'))
             : $karyawan->agama;
-$route = $karyawan->exists
-            ? ['method' => 'PUT', 'route' => ['admin.karyawan.update', $karyawan->id]]
-            : ['method' => 'POST', 'route' => ['admin.karyawan.store']];
+
+if(auth()->user()->isKaryawan())
+    $route = $karyawan->exists
+        ? ['method' => 'PUT', 'route' => ['karyawan.update', $karyawan->id]]
+        : ['method' => 'POST', 'route' => ['karyawan.store']];
+elseif(auth()->user()->isAdmin())    
+    $route = $karyawan->exists
+        ? ['method' => 'PUT', 'route' => ['admin.karyawan.update', $karyawan->id]]
+        : ['method' => 'POST', 'route' => ['admin.karyawan.store']];    
 @endphp
 @section('header')
 <!-- header -->
@@ -181,7 +187,13 @@ $route = $karyawan->exists
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <a type="button" href="{{ route('admin.karyawan.index') }}" class="btn btn-sm btn-warning btn-flat text-white">
+                    @php
+                        if(auth()->user()->isKaryawan())
+                            $route_back = route('user.profile');
+                        elseif(auth()->user()->isAdmin())    
+                            $route_back = route('admin.karyawan.index');
+                    @endphp
+                    <a type="button" href="{{ $route_back }}" class="btn btn-sm btn-warning btn-flat text-white">
                         <i class="fa fa-angle-left"></i>&nbsp;@lang('global.app_back')
                     </a> 
                     <button type="submit" class="btn btn-sm btn-primary btn-flat text-white pull-right">

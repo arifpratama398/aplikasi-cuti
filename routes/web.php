@@ -31,6 +31,7 @@ Route::post('/update/user',[App\Http\Controllers\HomeController::class, 'updateU
 
 // Add profile page for all user
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('user.profile');
+Route::resource('karyawan', 'App\Http\Controllers\KaryawanController');
 
 // Define manajemen cuti 
 // TODO - Refactor this

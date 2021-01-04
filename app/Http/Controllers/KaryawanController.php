@@ -93,7 +93,10 @@ class KaryawanController extends Controller
             Session::flash('alert-class', 'alert-danger');
         }
 
-        return redirect()->route('admin.karyawan.show', $karyawan->id);
+        if(auth()->user()->isKaryawan())
+            return redirect()->route('user.profile');
+        elseif(auth()->user()->isAdmin())    
+            return redirect()->route('admin.karyawan.show', $karyawan->id);
     }
 
 

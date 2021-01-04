@@ -46,6 +46,11 @@
           </ul>
         </div>
         <!-- /.card-body -->
+        <div class="card-footer">
+            <a href="{{ route('karyawan.edit', $profile->id) }}" class="btn btn-primary btn-flat btn-block">
+              Edit Profil
+            </a>
+        </div>
       </div>
       <!-- /.card -->
     </div>
