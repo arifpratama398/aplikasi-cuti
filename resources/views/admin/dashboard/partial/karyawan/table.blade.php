@@ -52,7 +52,7 @@
             @foreach ($cuti->take(5) as $new)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $new->name }}</td>
+                <td>{{ $new->karyawan->name }}</td>
                 <td>{{ $new->tgl_mulai }}</td>
                 <td>{{ $new->tgl_selesai }}</td>
                 <td>{{ $new->deskripsi }}</td>

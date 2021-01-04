@@ -22,14 +22,12 @@ class DashboardController extends Controller
     public function dashboard()
     {   
         $user = User::orderBy('created_at','desc')->get();
-        $cuti = Cuti::join('users','users.id','=','cuti.id')
-            // not confirmed by Managers 
-            ->whereNull('cuti.status_1')
+        $cuti = Cuti::whereNull('cuti.status_1')
             // not confirmed by HR
             ->whereNull('cuti.status_2')
             // show latest data.
             ->orderBy('cuti.created_at','desc')
-            ->get(['cuti.*', 'users.name']);
+            ->get(['cuti.*']);
         return view('admin.dashboard.index', compact(['user', 'cuti']));
     }    
 }
