@@ -52,7 +52,8 @@ return [
             'finish_date' => 'Tanggal Selesai',
             'name'      => 'Nama',
             'number'    => 'No.',
-            'start_date' => 'Tanggal Mulai'
+            'start_date' => 'Tanggal Mulai',
+            'status'    => 'Status'
         ]
     ],
     'employee_management'              => [

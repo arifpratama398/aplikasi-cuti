@@ -30,7 +30,8 @@ $route = ['method' => 'POST', 'route' => ['cuti.store']];
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="col-md-6 border-right">
+                <div class="row">
+                <div class="col-md-6 border-right">
                         <div class="row">     
                             <!-- START DATE FIELD  -->    
                             <div class="col-md-12 form-group {{ $errors->has('start_date') ? ' has-error' : '' }}">
@@ -66,6 +67,27 @@ $route = ['method' => 'POST', 'route' => ['cuti.store']];
                             </div>                                                          
                         </div>
                     </div>
+                    <div class="col-md-6 border-left">
+                        @php   
+                            $ref_jatah_cuti = App\Models\RefJatahCuti::firstWhere('tahun', date('Y'));   
+                            $ambil_cuti = App\Models\Cuti::where('cuti.status_1', '!=', 0)
+                                    // not confirmed by HR
+                                    ->where('cuti.status_2', '!=', 0)
+                                    // show latest data.
+                                    ->orderBy('cuti.created_at','desc')
+                                    ->sum('jumlah_hari');   
+                            $jatah_cuti = $ref_jatah_cuti->jumlah - $ambil_cuti;        
+                        @endphp
+                        <div class="info-box mb-3 bg-info">
+                            <span class="info-box-icon"><i class="far fa-comment"></i></span>
+                            <div class="info-box-content">
+                                <h3 class="info-box-text">{{ $jatah_cuti }} Hari</h3>
+                                <h4 class="info-box-number">Jatah Cuti</h4>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>                        
+                    </div>                
+                </div>
                 </div>
                 <!-- /.card-body -->
 

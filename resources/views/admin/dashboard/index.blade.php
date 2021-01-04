@@ -24,7 +24,9 @@
   @include('admin.dashboard.partial.admin.widget')
   @include('admin.dashboard.partial.admin.table')
 @else  
+  @if(auth()->user()->role->id != 4)  
   @include('admin.dashboard.partial.karyawan.widget')
+  @endif
   @include('admin.dashboard.partial.karyawan.table')
 @endif  
 </div>

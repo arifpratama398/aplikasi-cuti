@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuti;
+use App\Models\RefJatahCuti;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -61,14 +62,28 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         $data      = $request->all();
-        $validator = $this->validateForm($data);
+        $ref_jatah_cuti = RefJatahCuti::firstWhere('tahun', date('Y')); 
+        $ambil_cuti = Cuti::where('cuti.status_1', '!=', 0)
+        // not confirmed by HR
+        ->where('cuti.status_2', '!=', 0)
+        // show latest data.
+        ->orderBy('cuti.created_at','desc')
+        ->sum('jumlah_hari');  
+        $jatah_cuti = $ref_jatah_cuti->jumlah - $ambil_cuti;    
+
+        $validator = $this->validateForm($data, $jatah_cuti);
         if ($validator->fails()) {
             Session::flash('message', trans('global.save_error'));
             Session::flash('alert-class', 'alert-warning');
 
             return Redirect::back()->withErrors($validator)->withInput();
         }
-
+        $jumlah_hari = $this->getJumlahHari($data['start_date'], $data['finish_date']);
+        if($jumlah_hari > $jatah_cuti){
+            Session::flash('message', trans('Ambil cuti anda melebihi jatah hari cuti tersisa'));
+            Session::flash('alert-class', 'alert-warning');
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
         $cuti     = new Cuti();
         // $data['user_id'] = $this->setUserGetId($data);
         $this->setAttributes($cuti, $data);
@@ -89,6 +104,14 @@ class CutiController extends Controller
         $cuti->tgl_mulai        = $data['start_date'];
         $cuti->tgl_selesai      = $data['finish_date'];
         $cuti->deskripsi        = $data['description'];
+        $cuti->jumlah_hari      = $this->getJumlahHari($cuti->tgl_mulai, $cuti->tgl_selesai);
+    }
+
+    private function getJumlahHari($tgl_mulai, $tgl_selesai){
+        $tgl_mulai = \Carbon\Carbon::createFromFormat('Y-m-d', $tgl_mulai);
+        $tgl_selesai = \Carbon\Carbon::createFromFormat('Y-m-d', $tgl_selesai);
+        $jumlah_hari = $tgl_selesai->diffInDays($tgl_mulai);
+        return $jumlah_hari + 1;         
     }
 
     /**

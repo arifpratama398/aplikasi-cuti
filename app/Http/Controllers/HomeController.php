@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Cuti;
+use App\Models\RefJatahCuti;
 
 class HomeController extends Controller
 {
@@ -27,15 +28,27 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {        
+        $ref_jatah_cuti = RefJatahCuti::firstWhere('tahun', date('Y'));        
         $user = User::orderBy('created_at','desc')->get();
-        $cuti = Cuti::whereNull('cuti.status_1')
+        
+        // CUTI QUERY  
+        $query = Cuti::orderBy('cuti.created_at','desc');
+        if(auth()->user()->isKaryawan())    
+            $query->where('karyawan_id', auth()->user()->karyawan->id);    
+        $cuti = $query->get();    
+
+        // JATAH CUTI 
+        $ambil_cuti = Cuti::where('cuti.status_1', 1)
             // not confirmed by HR
-            ->whereNull('cuti.status_2')
+            ->where('cuti.status_2', 1)
             // show latest data.
             ->orderBy('cuti.created_at','desc')
-            ->get();
-        return view('admin.dashboard.index', compact(['user', 'cuti']));
+            ->sum('jumlah_hari');    
+
+        $jatah_cuti = $ref_jatah_cuti->jumlah - $ambil_cuti;
+        
+        return view('admin.dashboard.index', compact(['user', 'cuti', 'jatah_cuti']));
     }
 
     public function adminHome()
@@ -51,9 +64,7 @@ class HomeController extends Controller
             ->join('users','users.id','cuti.id')
             ->select('users.name','cuti.*')
             ->where('status', false)
-            ->paginate(10);
-
-        
+            ->paginate(10);        
 
         return view('admin_cuti', [
             'cuti_pending' => $cuti_pending,

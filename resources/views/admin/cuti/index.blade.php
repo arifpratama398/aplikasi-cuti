@@ -53,6 +53,7 @@ switch ($role) {
                                 <th width="15%" class="text-center">@lang('global.cuti.start_date')</th>
                                 <th width="15%" class="text-center">@lang('global.cuti.finish_date')</th>
                                 <th width="20%" class="text-center">@lang('global.cuti.description')</th>
+                                <th width="20%" class="text-center">@lang('global.cuti.status')</th>
                                 @if ($roleStr != 'karyawan')
                                     <th width="20%" class="text-center">@lang('global.app_action')</th>
                                 @endif
@@ -67,6 +68,7 @@ switch ($role) {
                                 <td>{{ $item->tgl_mulai }}</td>
                                 <td>{{ $item->tgl_selesai }}</td>
                                 <td>{{ $item->deskripsi }}</td>
+                                <td class="text-center">{!! $item->status !!}</td>
                                 @if ($roleStr != 'karyawan')
                                     <td class="text-center">
                                         <a href="{{ route($roleStr . '.cuti.action', [$item->cuti_id, 'accept']) }}" class="btn btn-xs btn-primary btn-flat">
