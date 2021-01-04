@@ -29,14 +29,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::orderBy('created_at','desc')->get();
-        $cuti = Cuti::join('users','users.id','=','cuti.id')
-            // not confirmed by Managers 
-            ->whereNull('cuti.status_1')
+        $cuti = Cuti::whereNull('cuti.status_1')
             // not confirmed by HR
             ->whereNull('cuti.status_2')
             // show latest data.
             ->orderBy('cuti.created_at','desc')
-            ->get(['cuti.*', 'users.name']);
+            ->get();
         return view('admin.dashboard.index', compact(['user', 'cuti']));
     }
 

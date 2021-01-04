@@ -25,21 +25,18 @@ class CutiController extends Controller
 
         switch($role) {
             case 2:
-                $cuti = Cuti::join('users','users.id','=','cuti.id')
-                    ->where('cuti.status_1', 1)->whereNull('cuti.status_2')
-                    ->orderBy('cuti.created_at','desc')->get(['cuti.*', 'users.name']);
+                $cuti = Cuti::where('cuti.status_1', 1)->whereNull('cuti.status_2')
+                    ->orderBy('cuti.created_at','desc')->get();
                 break;
             case 3:
-                $cuti = Cuti::join('users','users.id','=','cuti.id')
-                    ->whereNull('cuti.status_1')
+                $cuti = Cuti::whereNull('cuti.status_1')
                     ->whereNull('cuti.status_2')
-                    ->orderBy('cuti.created_at','desc')->get(['cuti.*', 'users.name']);
+                    ->orderBy('cuti.created_at','desc')->get();
                 break;
             default:
-                $cuti = Cuti::join('users','users.id','=','cuti.id')
-                ->where('users.id', Auth::id())
+                $cuti = Cuti::where('karyawan_id', auth()->user()->karyawan->id)                
                 // ->where('cuti.status_1', 1)->whereNull('cuti.status_2')
-                ->orderBy('cuti.created_at','desc')->get(['cuti.*', 'users.name']);
+                ->orderBy('cuti.created_at','desc')->get();
         }
         
         return view('admin.cuti.index', compact('cuti','role'));
@@ -88,7 +85,7 @@ class CutiController extends Controller
 
     private function setAttributes($cuti, $data)
     {
-        $cuti->id               = Auth::id();
+        $cuti->karyawan_id      = auth()->user()->karyawan->id;
         $cuti->tgl_mulai        = $data['start_date'];
         $cuti->tgl_selesai      = $data['finish_date'];
         $cuti->deskripsi        = $data['description'];

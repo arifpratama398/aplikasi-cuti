@@ -11,13 +11,10 @@ class Cuti extends Model
 
     use HasFactory;
     protected $fillable = [
-        'tgl_mulai', 'tgl_selesai', 'deskripsi', 'status_1', 'status_2'
+        'karyawan_id', 'tgl_mulai', 'tgl_selesai', 'deskripsi', 'status_1', 'status_2'
     ];
 
-
-    public function user() {
-        return $this->belongsTo(
-            'App\Models\User',
-        );
+    public function karyawan() {
+        return $this->belongsTo('App\Models\Karyawan', 'karyawan_id', 'id');
     }
 }

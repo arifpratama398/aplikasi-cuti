@@ -33,9 +33,9 @@ return [
         'email'         => 'Email',
         'finish_date'   => 'Tgl Selesai',
         'fields'        => [
-            'start_date'   => 'tgl_mulai',
-            'finish_date'  => 'tgl_selesai',
-            'description'  => 'deskripsi'
+            'start_date'   => 'Tgl Mulai',
+            'finish_date'  => 'Tgl Selesai',
+            'description'  => 'Keterangan'
         ],
         'name'          => 'Nama',
         'number'        => 'No.',
@@ -92,6 +92,9 @@ return [
         'edit'          => 'Edit Role',
         'name'          => 'Nama'
     ],
+    'select'            => [
+        'agama'         => 'Pilih Agama'        
+    ],    
     'user'              => [
         '_'             => 'User',
         'create'        => 'Tambah User',

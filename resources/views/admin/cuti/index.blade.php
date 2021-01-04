@@ -39,10 +39,12 @@ switch ($role) {
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    @if(auth()->user()->isAdmin() || auth()->user()->isKaryawan())
                     <div class="case-header with-border">
                         <a href="{{ route('cuti.create') }}" class="btn btn-sm btn-success btn-flat">
                         <i class="fa fa-plus fa-icon"></i>&nbsp;@lang('global.app_add')</a>
                     </div>
+                    @endif
                     <table id="table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -61,7 +63,7 @@ switch ($role) {
                             @foreach($cuti as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->karyawan->name }}</td>
                                 <td>{{ $item->tgl_mulai }}</td>
                                 <td>{{ $item->tgl_selesai }}</td>
                                 <td>{{ $item->deskripsi }}</td>
