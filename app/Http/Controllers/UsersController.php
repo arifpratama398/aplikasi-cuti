@@ -40,12 +40,13 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $data                = $request->all();
-        $validator = $this->validateForm($data);
-        if ($validator->fails()) {
+
+        $validator_create = $this->validateOnCreate($data);
+        if ($validator_create->fails()) {
             Session::flash('message', trans('global.save_error'));
             Session::flash('alert-class', 'alert-warning');
 
-            return Redirect::back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator_create)->withInput();
         }
 
         $user     = new User();
@@ -69,13 +70,13 @@ class UsersController extends Controller
      */    
     public function edit(User $user)
     {
-        $roles         = Role::get()->pluck('nama', 'id');
+        $roles = Role::get()->pluck('nama', 'id');
         return view('admin.users.create', compact('user', 'roles'));
     }        
 
     public function update(Request $request, User $user)
     {
-        $data                = $request->all();
+        $data      = $request->all();
         $validator = $this->validateForm($data);
         if ($validator->fails()) {
             Session::flash('message', trans('global.save_error'));
@@ -124,20 +125,31 @@ class UsersController extends Controller
     private function validateForm($data)
     {
         return Validator::make($data, [
+            'username'     => 'required|string|min:5|max:12',
+            'email'        => 'required|string|email|max:255',
+            'password'     => 'required|string|min:5|max:12|confirmed',
+            'role_id'      => 'required',
+            'name'         => 'required_unless:role_id,1'
+        ]);
+    }
+    
+    private function validateOnCreate($data)
+    {
+        return Validator::make($data, [
             'username'     => 'required|string|min:5|max:12|unique:users',
             'email'        => 'required|string|email|max:255|unique:users',
             'password'     => 'required|string|min:5|max:12|confirmed',
             'role_id'      => 'required',
             'name'         => 'required_unless:role_id,1'
         ]);
-    }    
+    }
 
     private function setAttributes($user, $data)
     {
         $user->username         = $data['username'];
         $user->name             = $data['name'];
         $user->email            = $data['email'];
-        $user->password         = Hash::make($data['password']);        
+        $user->password         = Hash::make($data['password']);       
         $user->role_id          = $data['role_id'];
         if($data['role_id'] == 1){
             $user->is_admin          = 1;

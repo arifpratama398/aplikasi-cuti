@@ -39,10 +39,12 @@ class HomeController extends Controller
         $cuti = $query->get();    
 
         // JATAH CUTI 
-        $ambil_cuti = Cuti::where('cuti.status_1', 1)
-            // not confirmed by HR
-            ->where('cuti.status_2', 1)
-            // show latest data.
+        $ambil_cuti = Cuti::where('cuti.karyawan_id', Auth::user()->karyawan->id)
+            ->where(function($query) {
+                $query
+                    ->whereNull('cuti.status_1')
+                    ->orWhere('cuti.status_2', 1);
+            })
             ->orderBy('cuti.created_at','desc')
             ->sum('jumlah_hari');    
 

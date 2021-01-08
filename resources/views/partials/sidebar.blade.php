@@ -70,6 +70,7 @@
               </a>
           </li>    
           @endif
+          @if(!auth()->user()->isAdmin())
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -87,6 +88,7 @@
                 </li>
             </ul>
           </li> 
+          @endif
           <!-- MANAJEMEN REFERENSI -->
           @if(auth()->user()->isAdmin())
           <li class="nav-item">

@@ -60,7 +60,7 @@ class KaryawanController extends Controller
             Session::flash('alert-class', 'alert-danger');
         }
 
-        return redirect()->route('admin.karyawan.show', $user->id);
+        return redirect()->route('admin.karyawan.show', $karyawan->id);
     }
 
 
@@ -76,15 +76,18 @@ class KaryawanController extends Controller
 
     public function update(Request $request, Karyawan $karyawan)
     {
-        $data                = $request->all();
+        $data      = $request->all();
         $validator = $this->validateForm($data);
+
         if ($validator->fails()) {
             Session::flash('message', trans('global.save_error'));
             Session::flash('alert-class', 'alert-warning');
 
             return Redirect::back()->withErrors($validator)->withInput();
         }
+       
         $this->setAttributes($karyawan, $data);
+
         if ($karyawan->save()) {
             Session::flash('message', trans('global.save_success'));
             Session::flash('alert-class', 'alert-success');
@@ -139,6 +142,7 @@ class KaryawanController extends Controller
     private function setAttributes($karyawan, $data)
     {
         $karyawan->nomor_karyawan   = $data['nomor_karyawan'];
+        $karyawan->user_id          = $data['user_id'];
         $karyawan->name             = $data['name'];
         $karyawan->alamat           = $data['alamat'];
         $karyawan->no_telp          = $data['no_telp'];
@@ -154,7 +158,7 @@ class KaryawanController extends Controller
             'username'   => $data['username'],
             'name'       => $data['username'],
             'email'      => $data['email'],
-            'password'   => $data['password'],
+            'password'   => Hash::make($data['password']),
             'role_id'    => $data['role_id'],
             'is_admin' => 0
         ]);
