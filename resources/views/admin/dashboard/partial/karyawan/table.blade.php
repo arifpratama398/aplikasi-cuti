@@ -54,8 +54,8 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $new->karyawan->name }}</td>
-                <td>{{ $new->tgl_mulai }}</td>
-                <td>{{ $new->tgl_selesai }}</td>
+                <td>{{ Helper::date_convert($new->tgl_mulai) }}</td>
+                <td>{{ Helper::date_convert($new->tgl_selesai) }}</td>
                 <td>{{ $new->deskripsi }}</td>
               </tr>
             @endforeach
@@ -106,8 +106,8 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $new->karyawan->name }}</td>
-                <td>{{ $new->tgl_mulai }}</td>
-                <td>{{ $new->tgl_selesai }}</td>
+                <td>{{ Helper::date_convert($new->tgl_mulai) }}</td>
+                <td>{{ Helper::date_convert($new->tgl_selesai) }}</td>
                 <td>{{ $new->deskripsi }}</td>
                 <td>
                   {!! $new->status !!}                  
