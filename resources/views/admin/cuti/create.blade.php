@@ -36,7 +36,7 @@ $route = ['method' => 'POST', 'route' => ['cuti.store']];
                             <!-- START DATE FIELD  -->    
                             <div class="col-md-12 form-group {{ $errors->has('start_date') ? ' has-error' : '' }}">
                                 {!! Form::label('start_date', trans('global.cuti.fields.start_date'), ['class' => 'control-label']) !!}
-                                {!! Form::date('start_date', old('start_date'), ['class' => 'form-control']) !!}
+                                {!! Form::date('start_date', old('start_date'), ['class' => 'form-control', 'min' => date('Y-m-d')]) !!}
                                 @if($errors->has('start_date'))
                                     <p class="help-block">
                                         {{ $errors->first('start_date') }}
@@ -47,7 +47,7 @@ $route = ['method' => 'POST', 'route' => ['cuti.store']];
                             <!-- END DATE FIELD -->
                             <div class="col-md-12 form-group {{ $errors->has('finish_date') ? ' has-error' : '' }}">
                                 {!! Form::label('finish_date', trans('global.cuti.fields.finish_date'), ['class' => 'control-label']) !!}
-                                {!! Form::date('finish_date', old('finish_date'), ['class' => 'form-control']) !!}
+                                {!! Form::date('finish_date', old('finish_date'), ['class' => 'form-control', 'min' => date('Y-m-d')]) !!}
                                 @if($errors->has('finish_date'))
                                     <p class="help-block">
                                         {{ $errors->first('finish_date') }}
